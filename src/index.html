@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Nimdecision</title>
+  <meta name="description" content="A spin-to-decide thing">
+  <meta name="author" content="Nick Huber">
+
+  <link rel="stylesheet" href="bulma.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="title has-text-centered">
+            Nimdecision
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tile is-ancestor">
+      <div class="tile is-vertical is-8">
+        <div class="tile">
+          <div class="tile is-parent is-vertical">
+            <article class="tile is-child notification is-primary">
+              <p class="title">Spin to decide!</p>
+              <p class="subtitle">Enter your choices in the text area</p>
+            </article>
+            <article class="tile is-child notification is-warning">
+              <p class="title">Then click this button</p>
+              <div class="has-text-centered">
+                <button id="spin" class="button is-large">Spin!</button>
+              </div>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-success">
+              <div class="content">
+                <p class="title">Choices</p>
+                <div class="content">
+                  <textarea class="textarea" placeholder="1 choice per line" name="choices" id="choices" rows="10"></textarea>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-info">
+          <p class="title">Wheel!</p>
+          <div class="has-text-centered">
+            <div id="chosen" class="is-size-2 has-text-centered">&nbsp;</div>
+            <div class="indicator">↓</div>
+            <div id="wheel"></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <script src="wheel.js"></script>
+</body>
+</html>

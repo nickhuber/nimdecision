@@ -1,0 +1,50 @@
+#wheel > svg {
+  height: 100%;
+}
+
+#wheel > svg text {
+  font-size: .1px;
+  font-weight: bold;
+  margin-left: .5px;
+  stroke-width: .005px;
+  fill: #eeeeee;
+  stroke: #121212;
+  white-space: pre;
+}
+
+#wheel.is-spinning {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: 2;
+  animation-timing-function: linear;
+}
+
+#wheel.is-stopping {
+  animation-name: spin-stop;
+  animation-duration: 2000ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+#wheel {
+  --rotationEnd: 0deg;
+}
+
+.indicator {
+  font-size: 3em;
+  font-weight: bold;
+  stroke-width: .005px;
+  fill: #eeeeee;
+  stroke: #121212;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to { transform:rotate(360deg); }
+}
+
+
+@keyframes spin-stop {
+  from {transform:rotate(0deg);}
+  to { transform:rotate(var(--rotationEnd)); }
+}
