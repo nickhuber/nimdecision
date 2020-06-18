@@ -80,39 +80,38 @@ proc addWheel() =
   svgContainer.appendChild(svg)
 
 
-proc unSpin(ev: Event) =
-  var wheel = document.getElementById("wheel")
-  wheel.removeEventListener("animationend", unSpin)
+proc spin(ev: Event) =
+  document.getElementById("chosen").innerHTML = "&nbsp;"
   var choice = sample(getChoices())
-  wheel.classlist.remove("is-spinning")
-  wheel.classlist.add("is-stopping")
+  var svg = document.getElementById("svg")
   var choices = getChoices()
   for i, c in choices:
     if choice == c:
       echo i, c
       var rotationStart = (1 / len(choices) * i.float)
       var rotationEnd = (1 / len(choices) * (i.float + 1))
-      # The midpoint of the arc will always be where the wheel ends
-      var rotation = Math.abs(360 - (rotationStart + rotationEnd) / 2 * 360)
-      wheel.style.setProperty("--rotationEnd", fmt("{rotation}deg"))
+      # The midpoint of the arc will always be where the svg ends
+      var rotation = Math.abs(630 - (rotationStart + rotationEnd) / 2 * 360)
+      svg.style.setProperty("--rotationEnd", fmt("{rotation}deg"))
       break
 
-  proc finish(ev: Event) =
-    wheel.removeEventListener("animationend", finish)
-    document.getElementById("chosen").innerHTML = choice
-    document.getElementById("spin").disabled = false
+  proc unSpin(ev: Event) =
+    svg.removeEventListener("animationend", unSpin)
+    svg.classlist.remove("is-spinning")
+    svg.classlist.add("is-stopping")
 
-  wheel.addEventListener("animationend", finish)
+    proc finish(ev: Event) =
+      svg.removeEventListener("animationend", finish)
+      document.getElementById("chosen").innerHTML = choice
+      document.getElementById("spin").disabled = false
 
+    svg.addEventListener("animationend", finish)
 
-proc spin(ev: Event) =
-  document.getElementById("chosen").innerHTML = "&nbsp;"
-  var wheel = document.getElementById("wheel")
-  wheel.classlist.remove("is-spinning")
-  wheel.classlist.remove("is-stopping")
-  wheel.classlist.add("is-spinning")
+  svg.classlist.remove("is-spinning")
+  svg.classlist.remove("is-stopping")
+  svg.classlist.add("is-spinning")
   document.getElementById("spin").disabled = true
-  wheel.addEventListener("animationend", unSpin)
+  svg.addEventListener("animationend", unSpin)
 
 
 proc choicesChanged(ev: Event) =

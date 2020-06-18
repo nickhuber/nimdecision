@@ -1,8 +1,8 @@
-#wheel > svg {
+#svg {
   height: 100%;
 }
 
-#wheel > svg text {
+#svg text {
   font-size: .1px;
   font-weight: bold;
   margin-left: .5px;
@@ -12,22 +12,23 @@
   white-space: pre;
 }
 
-#wheel.is-spinning {
+#svg.is-spinning {
   animation-name: spin;
   animation-duration: 1000ms;
   animation-iteration-count: 2;
   animation-timing-function: linear;
 }
 
-#wheel.is-stopping {
+#svg.is-stopping {
   animation-name: spin-stop;
-  animation-duration: 2000ms;
+  animation-duration: 3000ms;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
 
-#wheel {
+#svg {
   --rotationEnd: 0deg;
+  display: inline-block;
 }
 
 .indicator {
@@ -45,6 +46,6 @@
 
 
 @keyframes spin-stop {
-  from {transform:rotate(0deg);}
+  from { transform:rotate(0deg); }
   to { transform:rotate(var(--rotationEnd)); }
 }
